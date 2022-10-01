@@ -1,0 +1,27 @@
+create table crime(number int primary key, Date_and_time datetime ,place_of_crime varchar(25) ,Which_type_crime varchar(25) ,victims varchar(50), Detail_description_of_crime varchar(150), names_of_main_suspected varchar(50),under_police_station varchar(30), status varchar(25));
+
+
+
+
+create table criminal(name_of_criminal varchar(30), Age int,Gender varchar(10),Address varchar(50), Identifying_marks_in_face varchar(50),area_of_crime_criminal_firstarrested varchar(30),attached_to_which_crime varchar(30),personId int, foreign key(personId) references crime(number));
+
+
+insert into crime values(1,'2022-09-25 09:00:00','raikal','murder','ravan','person killed','ram','solved');
+
+ insert into criminal values('ram',25,'male','ayodhya','tilak on head','lanka','murder');
+
+
+update crime set status = 'solved' where  names_of_main_suspected = 'raju';
+
+
+ select cm.personId,cm.name_of_criminal,cm.area_of_crime_criminal_firstarrested,c.place_of_crime,c.under_police_station,c.Which_type_crime,c.victims,c.Detail_description_of_crime,c.names_of_main_suspected from crime c INNER JOIN criminal cm ON c.number = cm.personId where c.place_of_crime = 'korutla';
+
+
+ select status,place_of_crime,under_police_station,count(*) from crime group by status;
+
+select * from crime where victims = ?
+
+
+select  place_of_crime, count(*) from crime where Date_and_time Between '2022-01-01 00:00:00' and '2022-10-02 00:00:00' group by place_of_crime;
+
+
